@@ -1,0 +1,34 @@
+class BankAccount:
+    def __init__(self, interest_rate=0.01, balance=0):
+        self.interest_rate = interest_rate
+        self.balance = balance
+    
+    def deposit(self, amount):
+        self.balance += amount
+        return self  
+    
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+        else:
+            print("Insufficient funds")
+        return self  
+    
+    def display_account_info(self):
+        print(f"Balance: ${self.balance:.2f}")
+        return self  
+    
+    def yield_interest(self):
+        if self.balance > 0:
+            self.balance += self.balance * self.interest_rate
+        return self  
+
+# Create 2 accounts
+account1 = BankAccount( 0.07, 3000)
+account2 = BankAccount()
+
+# To the first account, make 3 deposits and 1 withdrawal, then yield interest and display the account's info all in one line of code (i.e. chaining)
+account1.deposit(100).deposit(200).deposit(50).withdraw(100).yield_interest().display_account_info()
+
+# To the second account, make 2 deposits and 4 withdrawals, then yield interest and display the account's info all in one line of code (i.e. chaining)
+account2.deposit(300).deposit(150).withdraw(50).withdraw(30).withdraw(20).withdraw(10).yield_interest().display_account_info()

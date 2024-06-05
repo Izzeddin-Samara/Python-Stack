@@ -1,0 +1,180 @@
+# Function one
+def a():
+    return 5
+print(a()) # output is 5
+
+# Function two
+def a():
+    return 5
+print(a()+a()) # output is 10
+
+# Function three
+def a():
+    return 5
+    return 10
+print(a()) # output is 5
+
+# Function four
+def a():
+    return 5
+    print(10)
+print(a()) # output is 5
+
+# Function five
+def a():
+    print(5)
+x = a()
+print(x) # output is 
+# 5
+# None
+
+# Function six
+def a(b, c):
+    return b + c
+print(a(1, 2) + a(2, 3)) # output is 8
+
+# Function seven
+def a(b,c):
+    return str(b)+str(c)
+print(a(2,5)) # output is 25
+
+# Function eight
+def a():
+    b = 100
+    print(b)
+    if b < 10:
+        return 5
+    else:
+        return 10
+    return 7
+print(a()) # output is 10
+
+# Function nine
+def a(b,c):
+    if b<c:
+        return 7
+    else:
+        return 14
+    return 3
+print(a(2,3))
+print(a(5,3))
+print(a(2,3) + a(5,3)) # output is 7, 14, 21
+
+# Function ten 
+def a(b,c):
+    return b+c
+    return 10
+print(a(3,5)) # output is 8
+
+# Function eleven
+b = 500
+print(b)
+def a():
+    b = 300
+    print(b)
+print(b)
+a()
+print(b) # output is 500, 500, 300, 300, 300
+
+#Function twelve
+b = 500
+print(b)
+def a():
+    b = 300
+    print(b)
+    return b
+print(b)
+a()
+print(b) # output is 500, 300, 300, 300, 300
+
+#Function thirteen
+b = 500
+print(b)
+def a():
+    b = 300
+    print(b)
+    return b
+print(b)
+b=a()
+print(b) # output is 500, 300, 300, 300, 300
+
+# Function fourteen
+def a():
+    print(1)
+    b()
+    print(2)
+def b():
+    print(3)
+a() # output 1, 2, 3
+
+# Function fifteen 
+def a():
+    print(1)
+    x = b()
+    print(x)
+    return 10
+def b():
+    print(3)
+    return 5
+y = a()
+print(y) # output is 1, 10, 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

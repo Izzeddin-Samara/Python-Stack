@@ -1,0 +1,66 @@
+class BankAccount:
+    def __init__(self, balance=0, interest_rate=0.01):
+        self.balance = balance
+        self.interest_rate = interest_rate
+
+    def deposit(self, amount):
+        self.balance += amount
+        return self
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+        else:
+            print("Insufficient funds")
+        return self
+
+    def display_account_info(self):
+        print(f"Balance: ${self.balance}")
+        return self
+
+    def yield_interest(self):
+        if self.balance > 0:
+            self.balance += self.balance * self.interest_rate
+        return self
+
+
+class User:
+    def __init__(self, name):
+        self.name = name
+        self.accounts = {}
+
+    def add_account(self, account_name, account_type="checking", balance=0):
+        if account_type == "savings":
+            interest_rate = 0.02  # Default interest rate for savings accounts
+        else:
+            interest_rate = 0.0  # Default interest rate for checking accounts
+        self.accounts[account_name] = BankAccount(balance, interest_rate)
+
+    def make_deposit(self, amount, account_name):
+        if account_name in self.accounts:
+            self.accounts[account_name].deposit(amount)
+        else:
+            print(f"Account {account_name} does not exist.")
+
+    def make_withdrawal(self, amount, account_name):
+        if account_name in self.accounts:
+            self.accounts[account_name].withdraw(amount)
+        else:
+            print(f"Account {account_name} does not exist.")
+
+    def display_user_balance(self, account_name):
+        if account_name in self.accounts:
+            self.accounts[account_name].display_account_info()
+        else:
+            print(f"Account {account_name} does not exist.")
+
+
+# Example usage for a single user with multiple accounts:
+user = User("John Doe")
+user.add_account("savings", "savings", 1000)  # Adding a savings account with interest rate
+user.add_account("checking", "checking", 500)  # Adding a checking account with no interest rate
+
+user.make_deposit(200, "savings")
+user.make_withdrawal(100, "checking")
+user.display_user_balance("savings")
+user.display_user_balance("checking") 
