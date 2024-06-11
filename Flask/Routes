@@ -1,1 +1,41 @@
+from flask import Flask
+
+app = Flask(__name__)  # Create a Flask application instance
+
+# Define route for the root URL
+@app.route('/')
+def hello_world():
+    return 'Hello World!'  # Return "Hello World!" as a response
+
+# Define route for '/dojo'
+@app.route('/dojo')
+def dojo():
+    return 'Dojo!'  # Return "dojo" as a response
+
+# Define route for '/say/<name>'
+@app.route('/say/<name>')
+def hello(name):
+    capitalized_name = name.capitalize()  # Capitalize the first letter of the name
+    return "Hi " + capitalized_name + "!"  # Return a greeting with the capitalized name
+
+# Define route for '/repeat/<num>/<word>'
+@app.route('/repeat/<int:num>/<string:word>')
+def repeat_word(num, word):
+    repeated_word = (word + ' ') * num
+    return repeated_word.rstrip()
+
+# Catch-all route for invalid routes
+@app.route('/<path:invalid_route>')
+def invalid_route(invalid_route):
+    abort(404)  # Return a 404 error for invalid routes
+
+# Error handler for 404 errors
+@app.errorhandler(404)
+def page_not_found(error):
+    return "Sorry! No response. Try again.", 404  # Return a custom error message for 404 errors
+
+if __name__ == '__main__':
+    app.run(debug=True)  # Run the Flask application in debug mode
+
+
 
