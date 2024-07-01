@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 24px;
+    text-align: center;
+}
+
+span {
+    font-weight: bold;
+}
+
+.buildings {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.building {
+    background-color: #eee;
+    padding: 20px;
+    text-align: center;
+    width: 22%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.building h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.building p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.activities {
+    background-color: #eee;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.activities h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.activities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.activities li {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.earned {
+    color: green;
+}
+
+.lost {
+    color: red;
+}

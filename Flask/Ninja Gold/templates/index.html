@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ninja Gold</h1>
+        <p>Your Gold: <span>{{ gold }}</span></p>
+        <div class="buildings">
+            <div class="building">
+                <h2>Farm</h2>
+                <p>(earns 10-20 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="farm">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>Cave</h2>
+                <p>(earns 5-10 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="cave">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>House</h2>
+                <p>(earns 2-5 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="house">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>Casino</h2>
+                <p>(earns/takes 0-50 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="casino">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+        </div>
+        <div class="activities">
+            <h3>Activities:</h3>
+            <ul>
+                {% for activity in activities %}
+                    <li class="{% if 'Earned' in activity %}earned{% elif 'lost' in activity %}lost{% endif %}">
+                        {{ activity }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
