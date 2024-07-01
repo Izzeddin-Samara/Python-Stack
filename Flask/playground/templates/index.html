@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Play</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome</h1>
+    <div class="box-container">
+        {% for _ in range(num_boxes) %}
+            <div class="box"></div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var boxes = document.querySelectorAll('.box');
+            var boxColor = '{{ box_color }}';
+            boxes.forEach(function(box) {
+                box.style.backgroundColor = boxColor;
+            });
+        });
+    </script>
+</body>
+</html>
