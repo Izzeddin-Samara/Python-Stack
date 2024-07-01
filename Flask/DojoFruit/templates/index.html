@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dojo Fruit Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dojo Fruit Store!</h1>
+        <div class="content">
+            <div class="form-container">
+                <h2>What would you like to buy?</h2>
+                <form action="{{ url_for('checkout') }}" method="POST">
+                    <table>
+                        <tr>
+                            <th>Fruit Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                        <tr>
+                            <td>Strawberry</td>
+                            <td><input type="number" name="strawberry" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Raspberry</td>
+                            <td><input type="number" name="raspberry" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td><input type="number" name="apple" value="0"></td>
+                        </tr>
+                    </table>
+                    <h2>Your Information:</h2>
+                    <p>Name: <input type="text" name="name"></p>
+                    <p>Your Student ID: <input type="text" name="student_id"></p>
+                    <button type="submit">Buy me stuff!</button>
+                </form>
+            </div>
+            <div class="info-container">
+                <h2>Welcome to Dojo Fruit Store!</h2>
+                <p>Your dojo decided to buy fruits for all the students! Please use this app to tell us what you would like to have! Once we get your order, we'll charge your student account automatically.</p>
+                <p>Dojo Fruit Store is proudly built using Flask.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
