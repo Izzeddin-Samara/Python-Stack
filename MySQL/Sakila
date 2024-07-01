@@ -1,0 +1,65 @@
+-- Query 1: Get all the customers inside city_id = 312
+-- This query returns customer first name, last name, email, and address
+SELECT c.first_name, c.last_name, c.email, a.address
+FROM customer c
+JOIN address a ON c.address_id = a.address_id
+WHERE a.city_id = 312;
+
+-- Query 2: Get all comedy films
+-- This query returns film title, description, release year, rating, special features, and genre (category)
+SELECT f.title, f.description, f.release_year, f.rating, f.special_features, c.name AS genre
+FROM film f
+JOIN film_category fc ON f.film_id = fc.film_id
+JOIN category c ON fc.category_id = c.category_id
+WHERE c.name = 'Comedy';
+
+-- Query 3: Get all the films joined by actor_id = 5
+-- This query returns the actor id, actor name, film title, description, and release year
+SELECT a.actor_id, CONCAT(a.first_name, ' ', a.last_name) AS actor_name, f.title, f.description, f.release_year
+FROM film f
+JOIN film_actor fa ON f.film_id = fa.film_id
+JOIN actor a ON fa.actor_id = a.actor_id
+WHERE a.actor_id = 5;
+
+-- Query 4: Get all the customers in store_id = 1 and inside these cities (1, 42, 312 and 459)
+-- This query returns customer first name, last name, email, and address
+SELECT c.first_name, c.last_name, c.email, a.address
+FROM customer c
+JOIN address a ON c.address_id = a.address_id
+JOIN city ci ON a.city_id = ci.city_id
+WHERE c.store_id = 1 AND ci.city_id IN (1, 42, 312, 459);
+
+-- Query 5: Get all the films with a rating = 'G' and special feature = 'Behind the Scenes', joined by actor_id = 15
+-- This query returns the film title, description, release year, rating, and special feature
+SELECT f.title, f.description, f.release_year, f.rating, f.special_features
+FROM film f
+JOIN film_actor fa ON f.film_id = fa.film_id
+JOIN actor a ON fa.actor_id = a.actor_id
+WHERE f.rating = 'G' AND f.special_features LIKE '%Behind the Scenes%' AND a.actor_id = 15;
+
+-- Query 6: Get all the actors that joined in the film_id = 369
+-- This query returns the film_id, title, actor_id, and actor_name
+SELECT f.film_id, f.title, a.actor_id, CONCAT(a.first_name, ' ', a.last_name) AS actor_name
+FROM film f
+JOIN film_actor fa ON f.film_id = fa.film_id
+JOIN actor a ON fa.actor_id = a.actor_id
+WHERE f.film_id = 369;
+
+-- Query 7: Get all drama films with a rental rate of 2.99
+-- This query returns film title, description, release year, rating, special features, and genre (category)
+SELECT f.title, f.description, f.release_year, f.rating, f.special_features, c.name AS genre
+FROM film f
+JOIN film_category fc ON f.film_id = fc.film_id
+JOIN category c ON fc.category_id = c.category_id
+WHERE c.name = 'Drama' AND f.rental_rate = 2.99;
+
+-- Query 8: Get all action films joined by SANDRA KILMER
+-- This query returns film title, description, release year, rating, special features, genre (category), and actor's first name and last name
+SELECT f.title, f.description, f.release_year, f.rating, f.special_features, c.name AS genre, a.first_name, a.last_name
+FROM film f
+JOIN film_category fc ON f.film_id = fc.film_id
+JOIN category c ON fc.category_id = c.category_id
+JOIN film_actor fa ON f.film_id = fa.film_id
+JOIN actor a ON fa.actor_id = a.actor_id
+WHERE c.name = 'Action' AND a.first_name = 'SANDRA' AND a.last_name = 'KILMER';
+
