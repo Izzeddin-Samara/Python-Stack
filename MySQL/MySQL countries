@@ -1,0 +1,104 @@
+-- 1. Query to Get All the Countries That Speak Slovene
+SELECT 
+    countries.name, 
+    languages.language, 
+    languages.percentage 
+FROM 
+    languages 
+LEFT JOIN 
+    countries ON countries.id = languages.country_id 
+WHERE 
+    languages.language = 'Slovene' 
+ORDER BY 
+    languages.percentage DESC;
+
+-- 2. Query to Display the Total Number of Cities for Each Country
+SELECT 
+    countries.name, 
+    COUNT(cities.id) AS total_cities 
+FROM 
+    cities 
+LEFT JOIN 
+    countries ON countries.id = cities.country_id 
+GROUP BY 
+    countries.name 
+ORDER BY 
+    total_cities DESC;
+
+-- 3. Query to Get All the Cities in Mexico with a Population Greater Than 500,000
+SELECT 
+    cities.name, 
+    cities.population 
+FROM 
+    cities 
+LEFT JOIN 
+    countries ON countries.id = cities.country_id 
+WHERE 
+    countries.name = 'Mexico' 
+    AND cities.population > 500000 
+ORDER BY 
+    cities.population DESC;
+
+-- 4. Query to Get All Languages in Each Country with a Percentage Greater Than 89%
+SELECT 
+    countries.name, 
+    languages.language, 
+    languages.percentage 
+FROM 
+    languages 
+LEFT JOIN 
+    countries ON countries.id = languages.country_id 
+WHERE 
+    languages.percentage > 89 
+ORDER BY 
+    languages.percentage DESC;
+
+-- 5. Query to Get All Countries with Surface Area Below 501 and Population Greater Than 100,000
+SELECT 
+    name, 
+    surface_area, 
+    population 
+FROM 
+    countries 
+WHERE 
+    surface_area < 501 
+    AND population > 100000;
+
+-- 6. Query to Get All Constitutional Monarchy Countries with a Capital Greater Than 200 and a Life Expectancy Greater Than 75 Years
+SELECT 
+    name, 
+    government_form, 
+    capital, 
+    life_expectancy 
+FROM 
+    countries 
+WHERE 
+    government_form = 'Constitutional Monarchy' 
+    AND capital > 200 
+    AND life_expectancy > 75;
+
+-- 7. Query to Get All the Cities of Argentina Inside the Buenos Aires District with a Population Greater Than 500,000
+SELECT 
+    countries.name AS country_name, 
+    cities.name AS city_name, 
+    cities.district, 
+    cities.population 
+FROM 
+    cities 
+LEFT JOIN 
+    countries ON countries.id = cities.country_id 
+WHERE 
+    countries.name = 'Argentina' 
+    AND cities.district = 'Buenos Aires' 
+    AND cities.population > 500000;
+
+-- 8. Query to Summarize the Number of Countries in Each Region
+SELECT 
+    region, 
+    COUNT(*) AS number_of_countries 
+FROM 
+    countries 
+GROUP BY 
+    region 
+ORDER BY 
+    number_of_countries DESC;
