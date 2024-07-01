@@ -1,0 +1,52 @@
+USE friendships;
+
+-- Create the users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(45) NOT NULL,
+    last_name VARCHAR(45) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Create the friendships table
+CREATE TABLE friendships (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    friend_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (friend_id) REFERENCES users(id)
+);
+
+-- Insert sample data into the users table
+INSERT INTO users (first_name, last_name, created_at, updated_at) VALUES 
+('Chris', 'Baker', NOW(), NOW()), 
+('Jessica', 'Davidson', NOW(), NOW()),
+('James', 'Johnson', NOW(), NOW()),
+('Diana', 'Smith', NOW(), NOW());
+
+-- Insert sample data into the friendships table
+INSERT INTO friendships (user_id, friend_id, created_at, updated_at) VALUES 
+((SELECT id FROM users WHERE first_name = 'Chris' AND last_name = 'Baker'), (SELECT id FROM users WHERE first_name = 'Jessica' AND last_name = 'Davidson'), NOW(), NOW()),
+((SELECT id FROM users WHERE first_name = 'Chris' AND last_name = 'Baker'), (SELECT id FROM users WHERE first_name = 'James' AND last_name = 'Johnson'), NOW(), NOW()),
+((SELECT id FROM users WHERE first_name = 'Chris' AND last_name = 'Baker'), (SELECT id FROM users WHERE first_name = 'Diana' AND last_name = 'Smith'), NOW(), NOW()),
+((SELECT id FROM users WHERE first_name = 'Diana' AND last_name = 'Smith'), (SELECT id FROM users WHERE first_name = 'Chris' AND last_name = 'Baker'), NOW(), NOW()),
+((SELECT id FROM users WHERE first_name = 'James' AND last_name = 'Johnson'), (SELECT id FROM users WHERE first_name = 'Chris' AND last_name = 'Baker'), NOW(), NOW()),
+((SELECT id FROM users WHERE first_name = 'Jessica' AND last_name = 'Davidson'), (SELECT id FROM users WHERE first_name = 'Chris' AND last_name = 'Baker'), NOW(), NOW());
+
+-- Query to retrieve the data in the desired format
+SELECT 
+    u1.first_name AS first_name,
+    u1.last_name AS last_name,
+    u2.first_name AS friend_first_name,
+    u2.last_name AS friend_last_name
+FROM 
+    users u1
+INNER JOIN 
+    friendships f ON u1.id = f.user_id
+INNER JOIN 
+    users u2 ON f.friend_id = u2.id
+ORDER BY 
+    u2.last_name, u2.first_name;
