@@ -1,0 +1,18 @@
+.checkerboard {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 50px);
+    grid-template-rows: repeat(var(--rows), 50px);
+}
+
+.checkerboard div {
+    width: 50px;
+    height: 50px;
+}
+
+.black {
+    background-color: black;
+}
+
+.red {
+    background-color: red;
+}
