@@ -1,0 +1,35 @@
+<!-- In newapp/templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Result</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Submitted Info</h1>
+        <div class="display-group">
+            <p><strong>Name:</strong> {{ name }}</p>
+        </div>
+        <div class="display-group">
+            <p><strong>Dojo Location:</strong> {{ location }}</p>
+        </div>
+        <div class="display-group">
+            <p><strong>Favorite Language:</strong> {{ language }}</p>
+        </div>
+        <div class="display-group">
+            <p><strong>Preferred Mode of Contact:</strong> {{ contact }}</p>
+        </div>
+        <div class="display-group">
+            <p><strong>Hobbies:</strong> {{ hobbies }}</p>
+        </div>
+        <div class="display-group">
+            <p><strong>Comment:</strong> {{ comment }}</p>
+        </div>
+        <a href="{% url 'dojosurvey' %}"><button type="button">Go Back</button></a>
+    </div>
+</body>
+</html>

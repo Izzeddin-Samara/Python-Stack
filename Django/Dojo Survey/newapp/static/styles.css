@@ -1,0 +1,101 @@
+/* In newapp/static/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 400px; /* Consistent width */
+    background-color: #fff;
+    padding: 30px; /* Consistent padding */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+    border-radius: 10px; /* Consistent border radius */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 22px; /* Consistent font size */
+    margin-bottom: 25px; /* Consistent margin to bottom */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px; /* Consistent margin */
+    font-weight: bold;
+    font-size: 16px; /* Consistent font size */
+}
+
+input, select, textarea {
+    width: 100%; /* Ensure all elements have the same width */
+    padding: 10px; /* Consistent padding */
+    margin-bottom: 20px; /* Consistent margin */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Consistent font size */
+    box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
+textarea {
+    height: 120px; /* Consistent height for textarea */
+}
+
+input[type="radio"], input[type="checkbox"] {
+    width: auto; /* Override width for radio and checkbox */
+    margin-right: 10px; /* Add some space between input and label */
+}
+
+.radio-group, .checkbox-group {
+    margin-bottom: 20px;
+}
+
+.radio-group label, .checkbox-group label {
+    display: inline-block;
+    margin-right: 20px; /* Space between radio/checkbox options */
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px; /* Consistent padding */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px; /* Consistent font size */
+    cursor: pointer;
+    margin-top: 15px; /* Consistent margin to top */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 25px; /* Consistent margin */
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px; /* Consistent font size */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.display-group {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    word-wrap: break-word; /* Ensure text wraps within the container */
+    overflow-wrap: break-word; /* Ensure text wraps within the container */
+}

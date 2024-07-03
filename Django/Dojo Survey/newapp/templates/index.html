@@ -1,0 +1,58 @@
+<!-- In newapp/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dojo Survey</h1>
+        <form action="{% url 'result' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="location">Dojo Location:</label>
+            <select id="location" name="location" required>
+                <option value="San Jose">San Jose</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Burbank">Burbank</option>
+            </select>
+            
+            <label for="language">Favorite Language:</label>
+            <select id="language" name="language" required>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Java">Java</option>
+            </select>
+
+            <label>Preferred Mode of Contact:</label>
+            <div class="radio-group">
+                <input type="radio" id="email" name="contact" value="Email" required>
+                <label for="email">Email</label>
+                <input type="radio" id="phone" name="contact" value="Phone" required>
+                <label for="phone">Phone</label>
+            </div>
+            
+            <label>Hobbies:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="reading" name="hobbies" value="Reading">
+                <label for="reading">Reading</label>
+                <input type="checkbox" id="sports" name="hobbies" value="Sports">
+                <label for="sports">Sports</label>
+                <input type="checkbox" id="coding" name="hobbies" value="Coding">
+                <label for="coding">Coding</label>
+            </div>
+            
+            <label for="comment">Comment (optional):</label>
+            <textarea id="comment" name="comment"></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
