@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaderboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Attempts</th>
+            <th>Date</th>
+        </tr>
+        {% for leader in leaders %}
+        <tr>
+            <td>{{ leader.name }}</td>
+            <td>{{ leader.attempts }}</td>
+            <td>{{ leader.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form method="GET" action="{% url 'play_again' %}">
+        <button type="submit">Play again</button>
+    </form>
+</body>
+</html>

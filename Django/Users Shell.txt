@@ -1,0 +1,43 @@
+from app.models import User
+
+# Create 3 new users
+user1 = User(first_name="Alice", last_name="Smith", email_address="alice@example.com", age=25)
+user1.save()
+
+user2 = User(first_name="Bob", last_name="Johnson", email_address="bob@example.com", age=30)
+user2.save()
+
+user3 = User(first_name="Charlie", last_name="Brown", email_address="charlie@example.com", age=22)
+user3.save()
+
+# Retrieve all the users
+users = User.objects.all()
+for user in users:
+    print(user.first_name, user.last_name, user.email_address, user.age)
+
+# Retrieve the last user
+last_user = User.objects.last()
+print(last_user.first_name, last_user.last_name, last_user.email_address, last_user.age)
+
+# Retrieve the first user
+first_user = User.objects.first()
+print(first_user.first_name, first_user.last_name, first_user.email_address, first_user.age)
+
+# Change the user with id=3 so their last name is Pancakes
+user_to_update = User.objects.get(id=3)
+user_to_update.last_name = "Pancakes"
+user_to_update.save()
+
+# Delete the user with id=2 from the database
+user_to_delete = User.objects.get(id=2)
+user_to_delete.delete()
+
+# Get all the users, sorted by their first name 
+users_sorted_by_first_name = User.objects.all().order_by('first_name')
+for user in users_sorted_by_first_name:
+    print(user.first_name, user.last_name, user.email_address, user.age)
+
+# BONUS: Get all the users, sorted by their first name in descending order
+users_sorted_by_first_name_desc = User.objects.all().order_by('-first_name')
+for user in users_sorted_by_first_name_desc:
+    print(user.first_name, user.last_name, user.email_address, user.age)

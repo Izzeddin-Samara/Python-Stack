@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <p>I am thinking of a number between 1 and 100</p>
+    <p>Take a guess!</p>
+    <form method="POST" action="{% url 'guess' %}">
+        {% csrf_token %}
+        <input type="number" name="guess" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if message %}
+    <div class="message {{ color }}">{{ message }}</div>
+    {% endif %}
+    {% if attempts %}
+    <p>Attempt: {{ attempts }}</p>
+    {% endif %}
+</body>
+</html>

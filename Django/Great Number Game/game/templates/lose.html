@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <p class="message red">You've used all 5 attempts. You lose!</p>
+    <form method="GET" action="{% url 'play_again' %}">
+        <button type="submit">Try again</button>
+    </form>
+</body>
+</html>

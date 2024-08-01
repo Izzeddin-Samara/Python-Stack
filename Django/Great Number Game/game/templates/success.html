@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Great Number Game</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <p class="message {{ color }}">{{ message }}</p>
+    <p>You guessed it in {{ attempts }} attempts!</p>
+    <form method="POST" action="{% url 'save_winner' %}">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <button type="submit">Save</button>
+    </form>
+    <form method="GET" action="{% url 'play_again' %}">
+        <button type="submit">Play again!</button>
+    </form>
+</body>
+</html>

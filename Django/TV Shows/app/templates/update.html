@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h1>{% if show %}Edit Show {{ show.id }}{% else %}Add a New Show{% endif %}</h1>
+    <form method="POST" action="{% url 'show_update' show.id %}">
+        {% csrf_token %}
+        <p>Title: <input type="text" name="title" value="{{ show.title }}"></p>
+        <p>Network: <input type="text" name="network" value="{{ show.network }}>" > </p>
+        <p>Release Date: <input type="date" name="release_date" value="{{ formatted_date }}"></p>
+        <p>Description: <textarea name="description">{{ show.description }}</textarea></p>
+        <button type="submit">update</button>
+    </form>
+    <a href="/shows">Go Back</a>
+</body>
+</html>

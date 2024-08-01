@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ninja Money</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% if not request.session.moves or not request.session.goal %}
+        <div class="start-game-form">
+            <form method="post" action="{% url 'set_conditions' %}">
+                {% csrf_token %}
+                <label for="moves">Number of Moves:</label>
+                <input type="number" name="moves" required>
+                <label for="goal">Goal for Gold:</label>
+                <input type="number" name="goal" required>
+                <button type="submit">Start Game</button>
+            </form>
+        </div>
+        {% else %}
+        <div class="gold">
+            <label>Your Gold: </label>
+            <input type="text" value="{{ request.session.gold }}" readonly>
+        </div>
+
+        <div class="locations">
+            <div>
+                <h1>Farm</h1>
+                <p>(earns 10-20 golds)</p>
+                <a href="{% url 'process_money' 'farm' %}"><button type="button">Find Gold!</button></a>
+            </div>
+
+            <div>
+                <h1>Cave</h1>
+                <p>(earns 5-10 golds)</p>
+                <a href="{% url 'process_money' 'cave' %}"><button type="button">Find Gold!</button></a>
+            </div>
+
+            <div>
+                <h1>House</h1>
+                <p>(earns 2-5 golds)</p>
+                <a href="{% url 'process_money' 'house' %}"><button type="button">Find Gold!</button></a>
+            </div>
+
+            <div>
+                <h1>Quest</h1>
+                <p>(earns/takes 0-50 golds)</p>
+                <a href="{% url 'process_money' 'quest' %}"><button type="button">Find Gold!</button></a>
+            </div>
+        </div>
+
+        <h2 id="h">Activities</h2>
+        <div class="activities">
+            {% for activity in request.session.activities %}
+                <p class="{{ activity.class }}">{{ activity.activity }} ({{ activity.timestamp }})</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if win %}
+        <div class="win-message">
+            <h1>Congratulations! You win!</h1>
+            <p>Your final gold: {{ request.session.gold }}</p>
+            <p>Moves left: {{ request.session.moves }}</p>
+        </div>
+        {% elif lose %}
+        <div class="lose-message">
+            <h1>Sorry, you lost!</h1>
+            <p>Your final gold: {{ request.session.gold }}</p>
+            <p>Moves left: {{ request.session.moves }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

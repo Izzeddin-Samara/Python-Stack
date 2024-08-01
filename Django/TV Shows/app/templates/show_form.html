@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a New Show</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h1>Add a New Show</h1>
+    <form method="POST" action="{% url 'show_create' %}">
+        {% csrf_token %}
+        <p>Title: <input type="text" name="title" value="{{ show.title }}"></p>
+        <p>Network: <input type="text" name="network" value="{{ show.network }}>" > </p>
+        <p>Release Date: <input type="date" name="release_date" value="{{ formatted_date }}"></p>
+        <p>Description: <textarea name="description">{{ show.description }}</textarea></p>
+        <button type="submit">Create</button>
+    </form>
+    <a href="{% url 'show_list' %}">Go Back</a>
+</body>
+</html>
