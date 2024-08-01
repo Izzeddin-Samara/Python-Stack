@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login & Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Registration</h2>
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <label for="password_confirmation">Confirm PW</label>
+                <input type="password" id="password_confirmation" name="password_confirmation">
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div class="form-container">
+            <h2>Login</h2>
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+    {% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+</body>
+</html>

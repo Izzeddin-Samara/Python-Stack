@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorite Books</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ user.first_name }}!</h1>
+        <div class="book-details">
+            <h2>{{ book.title }}</h2>
+            <p>Added by: {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }}</p>
+            <p>Added on: {{ book.created_at }}</p>
+            <p>Last updated: {{ book.updated_at }}</p>
+            <p>Description: {{ book.description }}</p>
+            {% if user == book.uploaded_by %}
+                <form action="{% url 'book_update' book.id %}" method="POST">
+                    {% csrf_token %}
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" value="{{ book.title }}">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description">{{ book.description }}</textarea>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="{% url 'book_delete' book.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            {% endif %}
+            {% if user in book.users_who_like.all %}
+                <a href="{% url 'remove_favorite' book.id %}">Un-Favorite</a>
+            {% else %}
+                <a href="{% url 'add_favorite' book.id %}">Add to Favorites</a>
+            {% endif %}
+        </div>
+        <div class="book-likes">
+            <h3>Users Who Like This Book:</h3>
+            <ul>
+                {% for liker in book.users_who_like.all %}
+                    <li>{{ liker.first_name }} {{ liker.last_name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'books_list' %}">Back to All Books</a>
+        <a href="{% url 'logout' %}">Log Out</a>
+    </div>
+</body>
+</html>

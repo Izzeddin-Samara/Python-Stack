@@ -1,0 +1,14 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+.logout {
+    margin-top: 20px;
+    background-color: cyan;
+    height: 40px;
+    width: 100px;
+    font-size: large;
+    padding: 10px;
+    border-radius: 50%;
+}

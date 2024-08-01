@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Favorite Books</title>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ user.first_name }}'s Favorite Books</h1>
+        <div class="favorite-books-list">
+            <ul>
+                {% for book in favorite_books %}
+                    <li>
+                        <a href="{% url 'book_detail' book.id %}">{{ book.title }}</a> (added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})
+                        <a href="{% url 'remove_favorite' book.id %}">Un-Favorite</a>
+                    </li>
+                {% empty %}
+                    <li>You have no favorite books yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'books_list' %}">Back to All Books</a>
+        <a href="{% url 'logout' %}">Log Out</a>
+    </div>
+</body>
+</html>
